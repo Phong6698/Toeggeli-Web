@@ -5,12 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {
+  MatButtonModule, MatButtonToggleModule, MatCheckboxModule,
+  MatListModule
+} from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
+import {GameDashboardComponent} from './game-dashboard/game-dashboard.component';
+import {NewGameComponent} from './new-game/new-game.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule} from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GameDashboardComponent,
+    NewGameComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,7 +30,13 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule,
+    MatListModule,
+    MatButtonToggleModule,
+    FlexLayoutModule,
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
