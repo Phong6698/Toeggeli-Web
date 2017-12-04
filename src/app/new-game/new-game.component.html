@@ -7,42 +7,46 @@
 
         <div class="team1 border col" style="margin: 1rem">
           <div class="row">
-            <div class="col-12">
+            <div class="col-12" style="margin-bottom: 1em" [@bounceInDown]="'bounceInDown'">
               <h3 class="text-center">Team 1</h3>
             </div>
             <div class="w-100"></div>
-            <div class="col-12">
-              <h5 class="text-center">Player 1</h5>
+            <div class="col-12 text-center">
+              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team1[0], team1)" style="margin-bottom: 1em" *ngIf="team1.length >= 1">{{team1[0].name}}</button>
             </div>
             <div class="w-100"></div>
-            <div class="col-12">
-              <h5 class="text-center">Player 2</h5>
-            </div>
-          </div>
-        </div>
-        <!--        <div class="w-100 d-none d-md-block d-lg-none"></div>-->
-        <div class="w-100 d-none d-md-block d-lg-none"></div>
-        <div class="col-xl-2" style="margin: 1rem">
-          <h3 class="text-center" style="margin-top: 1rem" >VS</h3>
-        </div>
-        <!--        <div class="w-100 d-none d-md-block d-lg-none"></div>-->
-        <div class="w-100 d-none d-md-block d-lg-none"></div>
-        <div class="team2 border col" style="margin: 1rem">
-          <div class="row">
-            <div class="col-12">
-              <h3 class="text-center">Team 2</h3>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-12">
-              <h5 class="text-center">Player 3</h5>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-12">
-              <h5 class="text-center">Player 4</h5>
+            <div class="col-12 text-center">
+              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team1[1], team1)" style="margin-bottom: 1em" *ngIf="team1.length == 2">{{team1[1].name}}</button>
             </div>
           </div>
         </div>
 
+        <div class="w-100 d-none d-md-block d-lg-none"></div>
+        <div class="col-xl-2" style="margin: 1rem">
+          <h3 class="text-center" style="margin-top: 1rem" >VS</h3>
+        </div>
+
+        <div class="w-100 d-none d-md-block d-lg-none"></div>
+        <div class="team2 border col" style="margin: 1rem">
+          <div class="row">
+            <div class="col-12" style="margin-bottom: 1em">
+              <h3 class="text-center">Team 2</h3>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12 text-center">
+              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team2[0], team2)" style="margin-bottom: 1em" *ngIf="team2.length >= 1">{{team2[0].name}}</button>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12 text-center">
+              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team2[1], team2)" style="margin-bottom: 1em" *ngIf="team2.length == 2">{{team2[1].name}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin: 1rem">
+        <div class="col-12 text-center">
+          <button class="" mat-raised-button (click)="animate('bounceInDown')"> An animated Button</button>
+        </div>
       </div>
 
     </div>
@@ -51,7 +55,9 @@
       <div class="players-box" style="margin: 1rem">
 
       </div>
-      <button mat-raised-button style="margin: 1em" *ngFor="let player of players">{{player.name}}</button>
+
+      <button *ngFor="let player of players" mat-raised-button type="submit" style="margin: 1em" (click)="addPlayerToTeam(player)">{{player.name}} </button>
+
     </div>
   </div>
 </div>

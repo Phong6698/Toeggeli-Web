@@ -12,7 +12,6 @@ import {
 import {MatTabsModule} from '@angular/material/tabs';
 import {GameDashboardComponent} from './game-dashboard/game-dashboard.component';
 import {NewGameComponent} from './new-game/new-game.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 
@@ -34,7 +33,6 @@ import {FormsModule} from '@angular/forms';
     MatTabsModule,
     MatListModule,
     MatButtonToggleModule,
-    FlexLayoutModule,
     FormsModule,
     NgbModule.forRoot()
   ],
