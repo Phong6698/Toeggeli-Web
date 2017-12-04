@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatButtonToggleModule, MatCheckboxModule,
+  MatButtonModule, MatButtonToggleModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatInputModule,
   MatListModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -22,6 +22,7 @@ import {FormsModule} from '@angular/forms';
     AppComponent,
     GameDashboardComponent,
     NewGameComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -33,6 +34,9 @@ import {FormsModule} from '@angular/forms';
     MatTabsModule,
     MatListModule,
     MatButtonToggleModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormsModule,
     NgbModule.forRoot()
   ],

@@ -12,18 +12,28 @@
             </div>
             <div class="w-100"></div>
             <div class="col-12 text-center">
-              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team1[0], team1)" style="margin-bottom: 1em" *ngIf="team1.length >= 1">{{team1[0].name}}</button>
+              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team1[0], team1)"
+                      style="margin-bottom: 1em" *ngIf="team1.length >= 1">{{team1[0].name}}
+              </button>
+              <button mat-button class="player-placeholder" disabled style="margin-bottom: 1em"
+                      *ngIf="team1.length < 1">Player 1
+              </button>
             </div>
             <div class="w-100"></div>
             <div class="col-12 text-center">
-              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team1[1], team1)" style="margin-bottom: 1em" *ngIf="team1.length == 2">{{team1[1].name}}</button>
+              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team1[1], team1)"
+                      style="margin-bottom: 1em" *ngIf="team1.length == 2">{{team1[1].name}}
+              </button>
+              <button mat-button class="player-placeholder" disabled style="margin-bottom: 1em"
+                      *ngIf="team1.length < 2">Player 2
+              </button>
             </div>
           </div>
         </div>
 
         <div class="w-100 d-none d-md-block d-lg-none"></div>
         <div class="col-xl-2" style="margin: 1rem">
-          <h3 class="text-center" style="margin-top: 1rem" >VS</h3>
+          <h3 class="text-center" style="margin-top: 3rem">VS</h3>
         </div>
 
         <div class="w-100 d-none d-md-block d-lg-none"></div>
@@ -34,11 +44,21 @@
             </div>
             <div class="w-100"></div>
             <div class="col-12 text-center">
-              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team2[0], team2)" style="margin-bottom: 1em" *ngIf="team2.length >= 1">{{team2[0].name}}</button>
+              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team2[0], team2)"
+                      style="margin-bottom: 1em" *ngIf="team2.length >= 1">{{team2[0].name}}
+              </button>
+              <button mat-button class="player-placeholder" disabled style="margin-bottom: 1em"
+                      *ngIf="team2.length < 1">Player 3
+              </button>
             </div>
             <div class="w-100"></div>
             <div class="col-12 text-center">
-              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team2[1], team2)" style="margin-bottom: 1em" *ngIf="team2.length == 2">{{team2[1].name}}</button>
+              <button mat-raised-button type="submit" (click)="deletePlayerFromTeam(team2[1], team2)"
+                      style="margin-bottom: 1em" *ngIf="team2.length == 2">{{team2[1].name}}
+              </button>
+              <button mat-button class="player-placeholder" disabled style="margin-bottom: 1em"
+                      *ngIf="team2.length < 2">Player 4
+              </button>
             </div>
           </div>
         </div>
@@ -53,11 +73,19 @@
 
     <div class="players-column col">
       <div class="players-box" style="margin: 1rem">
-
+        <button *ngFor="let player of players" mat-raised-button style="margin: 1em" (click)="addPlayerToTeam(player)">
+          {{player.name}}
+        </button>
       </div>
-
-      <button *ngFor="let player of players" mat-raised-button type="submit" style="margin: 1em" (click)="addPlayerToTeam(player)">{{player.name}} </button>
-
+      <div class="row" style="margin: 1rem; padding-top: 20px">
+        <div class="col-12 text-center">
+          <button mat-raised-button style="margin: 1em" (click)="addPlayerToTeamRandom()">Random</button>
+          <mat-form-field>
+            <input matInput [(ngModel)]="newPlayer" placeholder="Add new Player">
+          </mat-form-field>
+          <button mat-raised-button style="margin: 1em" *ngIf="newPlayer != null" (onClick)="addNewPlayer()">Add new Player</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
