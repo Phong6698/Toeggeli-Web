@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {trigger, style, transition, animate, keyframes, query, stagger, state, useAnimation} from '@angular/animations';
 import {bounceInDown, bounceOutUp} from 'ng-animate/lib';
+import {log} from "util";
 
 
 
@@ -19,10 +20,7 @@ import {bounceInDown, bounceOutUp} from 'ng-animate/lib';
 
 export class NewGameComponent implements OnInit {
 
-  goals = ['My first life goal', 'I want to climb a mountain', 'Go ice skiing'];
-
-  newPlayer: string;
-  animationDone = true;
+  newPlayer = '';
 
   players = [
     {name: 'Carsten'},
@@ -97,7 +95,7 @@ export class NewGameComponent implements OnInit {
 
   addNewPlayer() {
     this.players.push({name: this.newPlayer});
-    this.newPlayer = null;
+    this.newPlayer = '';
   }
 }
 
