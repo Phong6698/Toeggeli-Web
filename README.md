@@ -27,3 +27,12 @@ ngh
 ```
 npm install <something> --no-optional
 ```
+
+### ERROR in Error: Error encountered resolving symbol values statically. 
+```
+import {bounceInDown, bounceOutUp} from 'ng-animate/lib';
+```
+to
+```
+import {bounceInDown, bounceOutUp} from 'ng-animate';
+```
