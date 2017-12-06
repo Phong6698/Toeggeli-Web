@@ -3,6 +3,12 @@ Angular App for the Toeggeli
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.4.
 
+https://github.com/angular/material2
+https://github.com/ng-bootstrap/ng-bootstrap
+https://github.com/jiayihu/ng-animate#advanced-params
+https://github.com/the-darc/angular-virtual-keyboard
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

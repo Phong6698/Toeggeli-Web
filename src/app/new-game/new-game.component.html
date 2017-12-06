@@ -81,9 +81,11 @@
         <div class="col-12 text-center">
           <button mat-raised-button style="margin: 1em" (click)="addPlayerToTeamRandom()">Random</button>
           <mat-form-field>
-            <input matInput [(ngModel)]="newPlayer" placeholder="Add new Player">
+            <input matInput [matKeyboard]="'de-CH'" [(ngModel)]="newPlayer" placeholder="Add new Player"> <!--TODO A open keyboard button-->
           </mat-form-field>
-          <button mat-raised-button style="margin: 1em" [hidden]="newPlayer == ''" (click)="addNewPlayer()">Add new Player</button>
+          <button mat-raised-button style="margin: 1em" [hidden]="newPlayer == ''" (click)="addNewPlayer()">Add new
+            Player
+          </button>
         </div>
       </div>
     </div>
