@@ -2,12 +2,10 @@ import {Component, OnInit} from '@angular/core';
 
 import {trigger, style, transition, animate, keyframes, query, stagger, state, useAnimation} from '@angular/animations';
 import {bounceInDown, bounceOutUp} from 'ng-animate/lib';
-import {log} from "util";
-
 
 
 @Component({
-  selector: 'new-game',
+  selector: 'app-new-game',
   templateUrl: './new-game.component.html',
   styleUrls: ['./new-game.component.scss'],
   animations: [

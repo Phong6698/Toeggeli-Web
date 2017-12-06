@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Töggeli';
+
   navLinks = [
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/new-game', label: 'New Game' }

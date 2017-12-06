@@ -2,90 +2,101 @@
   <div class="row" style="margin-top: 5rem">
 
     <div class="match-column col-12 col-md-8">
-
-      <div class="match-box row" style="margin: 1rem">
-
-        <div class="team1 border col" style="margin: 1rem">
-          <div class="row">
-            <div class="col-12" style="margin-bottom: 1em">
-              <h3 class="text-center">Team 1</h3>
+      <mat-card style="background-color: #FCFCFC">
+        <div class="match-box row">
+          <div class="team1 border col" style="margin-left: 1rem; margin-right: 1em">
+            <div class="row">
+              <div class="col-12" style="margin-bottom: 1em; margin-top: 1em">
+                <h3 class="text-center">Team 1</h3>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-12 text-center">
+                <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team1[0], team1)"
+                        style="margin-bottom: 1em; background-color: #F66153; color: white" *ngIf="team1.length >= 1">
+                  {{team1[0].name}}
+                </button>
+                <button mat-button class="player-placeholder" disabled *ngIf="(team1.length < 1)">Player 1</button>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-12 text-center">
+                <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team1[1], team1)"
+                        style="margin-bottom: 1em; background-color: #F66153; color: white" *ngIf="team1.length == 2">
+                  {{team1[1].name}}
+                </button>
+                <button mat-button class="player-placeholder" disabled *ngIf="team1.length < 2">Player 2</button>
+              </div>
             </div>
-            <div class="w-100"></div>
-            <div class="col-12 text-center">
-              <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team1[0], team1)"
-                      style="margin-bottom: 1em" *ngIf="team1.length >= 1">{{team1[0].name}}
-              </button>
-              <button mat-button class="player-placeholder" disabled style="margin-bottom: 1em"
-                      *ngIf="(team1.length < 1)">Player 1
-              </button>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-12 text-center">
-              <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team1[1], team1)"
-                      style="margin-bottom: 1em" *ngIf="team1.length == 2">{{team1[1].name}}
-              </button>
-              <button mat-button class="player-placeholder" disabled style="margin-bottom: 1em"
-                      *ngIf="team1.length < 2">Player 2
-              </button>
+          </div>
+
+          <div class="w-100 d-none d-md-block d-lg-none"></div>
+          <div class="col-xl-2" style="margin: 1rem">
+            <h3 class="text-center" style="margin-top: 3rem">VS</h3>
+          </div>
+
+          <div class="w-100 d-none d-md-block d-lg-none"></div>
+          <div class="team2 border col" style="margin-left: 1rem; margin-right: 1em">
+            <div class="row">
+              <div class="col-12" style="margin-bottom: 1em; margin-top: 1em">
+                <h3 class="text-center">Team 2</h3>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-12 text-center">
+                <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team2[0], team2)"
+                        style="margin-bottom: 1em; background-color: #F66153; color: white" *ngIf="team2.length >= 1">
+                  {{team2[0].name}}
+                </button>
+                <button mat-button class="player-placeholder" disabled *ngIf="team2.length < 1">Player 3</button>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-12 text-center">
+                <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team2[1], team2)"
+                        style="margin-bottom: 1em; background-color: #F66153; color: white" *ngIf="team2.length == 2">
+                  {{team2[1].name}}
+                </button>
+                <button mat-button class="player-placeholder" disabled *ngIf="team2.length < 2">Player 4</button>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="w-100 d-none d-md-block d-lg-none"></div>
-        <div class="col-xl-2" style="margin: 1rem">
-          <h3 class="text-center" style="margin-top: 3rem">VS</h3>
-        </div>
-
-        <div class="w-100 d-none d-md-block d-lg-none"></div>
-        <div class="team2 border col" style="margin: 1rem">
-          <div class="row">
-            <div class="col-12" style="margin-bottom: 1em">
-              <h3 class="text-center">Team 2</h3>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-12 text-center">
-              <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team2[0], team2)"
-                      style="margin-bottom: 1em" *ngIf="team2.length >= 1">{{team2[0].name}}
-              </button>
-              <button mat-button class="player-placeholder" disabled style="margin-bottom: 1em"
-                      *ngIf="team2.length < 1">Player 3
-              </button>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-12 text-center">
-              <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team2[1], team2)"
-                      style="margin-bottom: 1em" *ngIf="team2.length == 2">{{team2[1].name}}
-              </button>
-              <button mat-button class="player-placeholder" disabled style="margin-bottom: 1em"
-                      *ngIf="team2.length < 2">Player 4
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      </mat-card>
       <div class="row" style="margin: 1rem">
         <div class="col-12 text-center">
           <button class="" mat-raised-button> An animated Button</button>
         </div>
       </div>
-
     </div>
 
+
     <div class="players-column col">
-      <div class="players-box" style="margin: 1rem">
-        <button *ngFor="let player of players" mat-raised-button style="margin: 1em" (click)="addPlayerToTeam(player)">
+      <div class="text-center">
+        <h3>Players</h3>
+      </div>
+      <div class="players-box text-center" style="margin: 1rem">
+        <button *ngFor="let player of players" mat-raised-button
+                style="margin: 1em; background-color: #F66153; color: white" (click)="addPlayerToTeam(player)"
+                matTooltip="Click to add {{player.name}} to the game">
           {{player.name}}
         </button>
       </div>
       <div class="row" style="margin: 1rem; padding-top: 20px">
         <div class="col-12 text-center">
-          <button mat-raised-button style="margin: 1em" (click)="addPlayerToTeamRandom()">Random</button>
-          <mat-form-field>
-            <input matInput [matKeyboard]="'de-CH'" [(ngModel)]="newPlayer" placeholder="Add new Player"> <!--TODO A open keyboard button-->
-          </mat-form-field>
-          <button mat-raised-button style="margin: 1em" [hidden]="newPlayer == ''" (click)="addNewPlayer()">Add new
-            Player
-          </button>
+          <button mat-raised-button matTooltip="Add Player randomly" style="margin: 1em; background-color: #43a047; color: white" (click)="addPlayerToTeamRandom()"><mat-icon>casino</mat-icon></button>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12 text-center">
+          <div class="row">
+            <div class="col text-center">
+              <mat-form-field>
+                <input matInput [matKeyboard]="'de-CH'" [(ngModel)]="newPlayer" placeholder="Add new Player">
+                <!--TODO A open keyboard button-->
+              </mat-form-field>
+            </div>
+            <div class="col text-center" *ngIf="newPlayer != ''">
+              <button mat-raised-button (click)="addNewPlayer()" style="background-color: #43a047; color: white">Add new
+                Player
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
