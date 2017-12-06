@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import {trigger, transition, useAnimation, style, animate} from '@angular/animations';
-import {bounceInDown} from 'ng-animate/lib';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {trigger, style, transition, animate, keyframes, query, stagger, state, useAnimation} from '@angular/animations';
+import {bounceInDown, bounceOutUp} from 'ng-animate/lib';
+
 
 
 @Component({
@@ -10,15 +10,19 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
   templateUrl: './new-game.component.html',
   styleUrls: ['./new-game.component.scss'],
   animations: [
-    trigger('bounceInDown', [transition('* => *', useAnimation(bounceInDown))]),
+    trigger('addBounceAnimation', [
+      transition('void => *', useAnimation(bounceInDown)),
+      transition('* => void', useAnimation(bounceOutUp))
+    ]),
   ],
 })
 
 export class NewGameComponent implements OnInit {
 
-  bounceInDown: any;
+  goals = ['My first life goal', 'I want to climb a mountain', 'Go ice skiing'];
 
   newPlayer: string;
+  animationDone = true;
 
   players = [
     {name: 'Carsten'},
@@ -36,9 +40,8 @@ export class NewGameComponent implements OnInit {
   team1 = [];
   team2 = [];
 
-  constructor(public dialog: MatDialog) {
+  constructor() {
   }
-
 
 
   ngOnInit(): void {
@@ -95,10 +98,6 @@ export class NewGameComponent implements OnInit {
   addNewPlayer() {
     this.players.push({name: this.newPlayer});
     this.newPlayer = null;
-  }
-
-  animate(name: 'string') {
-    this.bounceInDown = 'bounceInDown';
   }
 }
 
