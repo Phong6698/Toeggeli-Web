@@ -9,7 +9,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test.ci": "ng test --watch=false --browsers=ChromeHeadless --code-coverage=true",
     "build.dev": "ng build --environment=dev --aot=true",
     "build.abt": "ng build --target=production --environment=abt --aot=true",
     "build.prd": "ng build --target=production --environment=prd --aot=true"
@@ -57,6 +56,6 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2",
-    "node-sass": "4.5.3"
+    "node-sass": "4.7.2"
   }
 }
