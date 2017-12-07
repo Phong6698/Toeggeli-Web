@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {trigger, style, transition, animate, keyframes, query, stagger, state, useAnimation} from '@angular/animations';
-import {bounceInDown, bounceOutUp} from 'ng-animate/lib';
+import {bounceInDown, bounceOutUp} from 'ng-animate';
 
 
 @Component({
