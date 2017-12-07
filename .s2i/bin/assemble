@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd /tmp/src
+
+# Install dependencies
+npm install
+
+# Run assemble S2I script of lsg-ext
+chmod u+x /tmp/src/node_modules/lsg-ext/openshift/.s2i/bin/assemble
+/tmp/src/node_modules/lsg-ext/openshift/.s2i/bin/assemble
