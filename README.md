@@ -28,11 +28,7 @@ ngh
 npm install <something> --no-optional
 ```
 
-### ERROR in Error: Error encountered resolving symbol values statically. 
+### Access outside localhost
 ```
-import {bounceInDown, bounceOutUp} from 'ng-animate/lib';
-```
-to
-```
-import {bounceInDown, bounceOutUp} from 'ng-animate';
+ng serve --host 0.0.0.0
 ```

@@ -20,6 +20,8 @@ export class NewGameComponent implements OnInit {
 
   newPlayer = '';
 
+  isResultState = false;
+
   players = [
     {name: 'Carsten'},
     {name: 'Lars'},
@@ -94,6 +96,14 @@ export class NewGameComponent implements OnInit {
   addNewPlayer() {
     this.players.push({name: this.newPlayer});
     this.newPlayer = '';
+  }
+
+  resultStateToggle() {
+    if (this.isResultState) {
+      this.isResultState = false;
+    } else {
+      this.isResultState = true;
+    }
   }
 }
 
