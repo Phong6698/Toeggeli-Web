@@ -1,9 +1,9 @@
 <div class="container-fluid" style="padding-left: 5%; padding-right: 5%">
   <div class="row" style="margin-top: 5rem">
 
-    <div class="match-column col-12" [ngClass]="{'col-md-8': !isResultState}">
+    <div class="game-column col-12" [@showGameColumn] [@hideGameColumn] [ngClass]="{'col-xl-8': !isResultState}">
       <mat-card style="background-color: #FCFCFC">
-        <div class="match-box row">
+        <div class="game-box row">
           <div class="team1 border col" style="margin-left: 1rem; margin-right: 1em">
             <div class="row">
               <div class="col-12" style="margin-bottom: 1em; margin-top: 1em">
@@ -11,7 +11,7 @@
               </div>
               <div class="w-100"></div>
               <div class="col-12 text-center">
-                <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team1[0], team1)"
+                <button class="player-button" mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team1[0], team1)"
                         style="margin-bottom: 1em; background-color: #F66153; color: white" *ngIf="team1.length >= 1">
                   {{team1[0].name}}
                 </button>
@@ -19,7 +19,7 @@
               </div>
               <div class="w-100"></div>
               <div class="col-12 text-center">
-                <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team1[1], team1)"
+                <button class="player-button" mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team1[1], team1)"
                         style="margin-bottom: 1em; background-color: #F66153; color: white" *ngIf="team1.length == 2">
                   {{team1[1].name}}
                 </button>
@@ -27,12 +27,30 @@
               </div>
             </div>
           </div>
-
+          <div class="w-100 d-none d-md-block d-lg-none" *ngIf="isResultState"></div>
+          <div class="col-1 text-center" [@showPoints] *ngIf="isResultState">
+            <mat-form-field style="width: 80px; margin-top: 3rem">
+              <mat-select placeholder="Points" [(ngModel)]="team1Points" (selectionChange)="onTeam1PointChange()">
+                <mat-option *ngFor="let point of points" [value]="point">
+                  {{point}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
           <div class="w-100 d-none d-md-block d-lg-none"></div>
-          <div class="col-xl-2" style="margin: 1rem">
+          <div class="col-12 col-xl-1" style="margin: 1rem">
             <h3 class="text-center" style="margin-top: 3rem">VS</h3>
           </div>
-
+          <div class="w-100 d-none d-md-block d-lg-none" *ngIf="isResultState"></div>
+          <div class="col-1 text-center" [@showPoints] *ngIf="isResultState">
+            <mat-form-field style="width: 80px; margin-top: 3rem">
+              <mat-select placeholder="Points" [(ngModel)]="team2Points" (selectionChange)="onTeam2PointChange()">
+                <mat-option *ngFor="let point of points" [value]="point">
+                  {{point}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
           <div class="w-100 d-none d-md-block d-lg-none"></div>
           <div class="team2 border col" style="margin-left: 1rem; margin-right: 1em">
             <div class="row">
@@ -41,7 +59,7 @@
               </div>
               <div class="w-100"></div>
               <div class="col-12 text-center">
-                <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team2[0], team2)"
+                <button class="player-button" mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team2[0], team2)"
                         style="margin-bottom: 1em; background-color: #F66153; color: white" *ngIf="team2.length >= 1">
                   {{team2[0].name}}
                 </button>
@@ -49,7 +67,7 @@
               </div>
               <div class="w-100"></div>
               <div class="col-12 text-center">
-                <button mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team2[1], team2)"
+                <button class="player-button" mat-raised-button [@addBounceAnimation]="" (click)="deletePlayerFromTeam(team2[1], team2)"
                         style="margin-bottom: 1em; background-color: #F66153; color: white" *ngIf="team2.length == 2">
                   {{team2[1].name}}
                 </button>
@@ -61,18 +79,20 @@
       </mat-card>
       <div class="row" style="margin: 1rem">
         <div class="col-12 text-center">
-          <button mat-raised-button style="background-color: #43a047; color: white" (click)="resultStateToggle()">Resultat eingeben</button>
+          <button *ngIf="!isResultState" mat-raised-button style="background-color: #43a047; color: white" (click)=" isResultState = true">Resultat eingeben</button>
+          <button *ngIf="isResultState" mat-raised-button style="background-color: #43a047; color: white" (click)=" isResultState = false">Zurück</button>
+          <button *ngIf="isResultState" mat-raised-button style="background-color: #43a047; color: white">Speichern</button>
         </div>
       </div>
     </div>
 
 
-    <div class="players-column col" *ngIf="!isResultState">
+    <div class="players-column col" *ngIf="!isResultState" [@showPlayerColumn] [@hidePlayerColumn]>
       <div class="text-center">
-        <h3>Players</h3>
+        <h3>Spieler</h3>
       </div>
       <div class="players-box text-center" style="margin: 1rem">
-        <button *ngFor="let player of players" mat-raised-button
+        <button class="player-button" *ngFor="let player of players" mat-raised-button
                 style="margin: 1em; background-color: #F66153; color: white" (click)="addPlayerToTeam(player)"
                 matTooltip="Click to add {{player.name}} to the game">
           {{player.name}}
@@ -92,8 +112,7 @@
               </mat-form-field>
             </div>
             <div class="col text-center" *ngIf="newPlayer != ''">
-              <button mat-raised-button (click)="addNewPlayer()" style="background-color: #43a047; color: white">Add new
-                Player
+              <button mat-raised-button  (click)="addNewPlayer()" style="background-color: #43a047; color: white">Spieler hinzufügen
               </button>
             </div>
           </div>

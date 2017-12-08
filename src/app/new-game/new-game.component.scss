@@ -1,15 +1,26 @@
-/*.match-box {
-  border: solid;
-  border-color: #3d5fb2;
-  border-radius: 5px;
-}*/
-
 .player-placeholder {
   border: dotted;
   border-color: #ff9380;
   margin-bottom: 1em;
   font-style: italic;
   font-size: medium;
+}
+
+button {
+  font-size: large;
+  min-width: 110px;
+  min-height: 50px;
+}
+
+.col-12 {
+  flex-grow: 1;
+  transition: all 400ms ease;
+  transition-delay: 400ms;
+}
+
+.col-md-8 {
+  flex-shrink: 1;
+  transition: all 400ms ease;
 }
 
 

@@ -9,7 +9,7 @@ import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatToolbarModule, MatTooltipModule
+  MatListModule, MatSelectModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {GameDashboardComponent} from './game-dashboard/game-dashboard.component';
@@ -17,6 +17,7 @@ import {NewGameComponent} from './new-game/new-game.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
+import 'hammerjs';
 
 
 
@@ -44,6 +45,7 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatToolbarModule,
     MatTooltipModule,
     MatCardModule,
+    MatSelectModule,
     FormsModule,
     NgbModule.forRoot()
   ],

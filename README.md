@@ -21,6 +21,14 @@ ng build --prod --base-href "https://phong6698.github.io/Toeggeli-Web/"
 ngh
 ```
 
+##Ideas
+- Bigger buttons
+- Select wheel for result 0-10
+- For new game: background teambox football field and players a sitting bank
+- Google Icon Font self hosting https://google.github.io/material-design-icons/#icon-font-for-the-web
+
+
+
 
 ## Some stuff
 ### npm ERR! Please try running this command again as root/Administrator.

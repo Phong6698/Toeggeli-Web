@@ -1,8 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 
 import {trigger, style, transition, animate, keyframes, query, stagger, state, useAnimation} from '@angular/animations';
-import {bounceInDown, bounceOutUp} from 'ng-animate';
-
+import {
+  bounceInDown,
+  bounceOutUp,
+  flipInY,
+  flipOutY,
+  fadeInRight,
+  fadeOutRight,
+  slideInRight,
+  slideOutRight,
+  slideInLeft,
+  slideOutLeft,
+  slideOutUp,
+  fadeInUp
+} from 'ng-animate';
 
 @Component({
   selector: 'app-new-game',
@@ -12,7 +24,33 @@ import {bounceInDown, bounceOutUp} from 'ng-animate';
     trigger('addBounceAnimation', [
       transition('void => *', useAnimation(bounceInDown)),
       transition('* => void', useAnimation(bounceOutUp))
+    ])
+    ,
+    trigger('showPlayerColumn', [
+      transition('void => *', useAnimation(slideInRight, {
+        params: {timing: 0.3, fromOpacity: 0}
+      }))
     ]),
+    trigger('hidePlayerColumn', [
+      transition('* => void', useAnimation(slideOutRight, {
+        params: {timing: 0.3, toOpacity: 0}
+      }))
+    ]),
+    trigger('showGameColumn', [
+      transition('void => *', useAnimation(slideInLeft, {
+        params: {timing: 0.3, fromOpacity: 0}
+      }))
+    ]),
+    trigger('hideGameColumn', [
+      transition('* => void', useAnimation(slideOutUp, {
+        params: {timing: 0.3, toOpacity: 0}
+      }))
+    ]),
+    trigger('showPoints', [
+      transition('void => *', useAnimation(fadeInUp), {
+        params: {timing: 0.8}
+      })
+    ])
   ],
 })
 
@@ -37,6 +75,13 @@ export class NewGameComponent implements OnInit {
 
   team1 = [];
   team2 = [];
+
+  points = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+  ];
+
+  team1Points: number;
+  team2Points: number;
 
   constructor() {
   }
@@ -79,31 +124,38 @@ export class NewGameComponent implements OnInit {
   }
 
   deletePlayerFromTeam(player, team): void {
-    this.players.push(player);
-    this.players.sort((a, b) => {
-      if (a.name > b.name) {
-        return 1;
-      }
-      if (a.name < b.name) {
-        return -1;
-      }
-      return 0;
-    });
+    if (!this.isResultState) {
+      this.players.push(player);
+      this.players.sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        }
+        if (a.name < b.name) {
+          return -1;
+        }
+        return 0;
+      });
 
-    team.splice(team.indexOf(player), 1);
+      team.splice(team.indexOf(player), 1);
+    }
+
   }
 
   addNewPlayer() {
     this.players.push({name: this.newPlayer});
     this.newPlayer = '';
   }
-
-  resultStateToggle() {
-    if (this.isResultState) {
-      this.isResultState = false;
-    } else {
-      this.isResultState = true;
+  onTeam1PointChange() {
+    if (this.team1Points !== 10) {
+      this.team2Points = 10;
     }
   }
+
+  onTeam2PointChange() {
+    if (this.team2Points !== 10) {
+      this.team1Points = 10;
+    }
+  }
+
 }
 
