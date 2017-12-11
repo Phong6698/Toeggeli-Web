@@ -12,20 +12,22 @@ import {
   MatListModule, MatSelectModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
-import {GameDashboardComponent} from './game-dashboard/game-dashboard.component';
-import {NewGameComponent} from './new-game/new-game.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {NewMatchComponent} from './matches/new-match/new-match.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 import 'hammerjs';
-
+import {HttpClientModule} from '@angular/common/http';
+import {MatchService} from './matches/shared/match.service';
+import {PlayerService} from './players/shared/player.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameDashboardComponent,
-    NewGameComponent,
+    DashboardComponent,
+    NewMatchComponent,
 
   ],
   imports: [
@@ -47,9 +49,10 @@ import 'hammerjs';
     MatCardModule,
     MatSelectModule,
     FormsModule,
+    HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [MatchService, PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
