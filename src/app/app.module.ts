@@ -9,11 +9,11 @@ import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatSelectModule, MatToolbarModule, MatTooltipModule
+  MatListModule, MatSelectModule, MatSlideToggleModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {NewMatchComponent} from './matches/new-match/new-match.component';
+import {NewMatchComponent, RandomPlayerSelectorDialogComponent} from './matches/new-match/new-match.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
@@ -28,7 +28,7 @@ import {PlayerService} from './players/shared/player.service';
     AppComponent,
     DashboardComponent,
     NewMatchComponent,
-
+    RandomPlayerSelectorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,11 +48,13 @@ import {PlayerService} from './players/shared/player.service';
     MatTooltipModule,
     MatCardModule,
     MatSelectModule,
+    MatSlideToggleModule,
     FormsModule,
     HttpClientModule,
     NgbModule.forRoot()
   ],
   providers: [MatchService, PlayerService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RandomPlayerSelectorDialogComponent]
 })
 export class AppModule { }

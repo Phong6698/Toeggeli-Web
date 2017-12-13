@@ -79,7 +79,7 @@
       </mat-card>
       <div class="row" style="margin: 1rem">
         <div class="col-12 text-center">
-          <button *ngIf="!isResultState" mat-raised-button color="primary" (click)=" isResultState = true">Resultat eingeben</button>
+          <button *ngIf="!isResultState" [disabled]="!checkTeamsFull()" mat-raised-button color="primary" (click)="isResultState = true">Resultat eingeben</button>
           <button *ngIf="isResultState" mat-raised-button color="primary" (click)=" isResultState = false">Zurück</button>
           <button *ngIf="isResultState" mat-raised-button color="primary" (click)="addNewMatch()">Speichern</button>
         </div>
@@ -102,7 +102,7 @@
       </div>
       <div class="row" style="margin: 1rem; padding-top: 20px">
         <div class="col-12 text-center">
-          <button mat-raised-button matTooltip="Add Player randomly" color="primary" style="margin: 1em" (click)="addPlayerToTeamRandom()"><mat-icon>casino</mat-icon></button>
+          <button mat-raised-button matTooltip="Add Player randomly" [disabled]="checkTeamsFull()" color="primary" style="margin: 1em" (click)="openRandomDialog()"><mat-icon>casino</mat-icon></button>
         </div>
         <div class="w-100"></div>
         <div class="col-12 text-center">

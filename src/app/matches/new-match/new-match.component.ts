@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Inject} from '@angular/core';
 
 import {trigger, transition, useAnimation} from '@angular/animations';
 import {
@@ -15,6 +15,7 @@ import {PlayerService} from '../../players/shared/player.service';
 import {MatchService} from '../shared/match.service';
 import {Player} from '../../players/shared/player.model';
 import {Match} from '../shared/match.model';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-new-match',
@@ -53,7 +54,6 @@ import {Match} from '../shared/match.model';
     ])
   ],
 })
-
 export class NewMatchComponent implements OnInit {
 
   newPlayer = '';
@@ -68,7 +68,7 @@ export class NewMatchComponent implements OnInit {
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
   ];
 
-  constructor(private playerService: PlayerService, private matchService: MatchService) {
+  constructor(private playerService: PlayerService, private matchService: MatchService, public dialog: MatDialog) {
     this.match = new Match();
   }
 
@@ -121,19 +121,19 @@ export class NewMatchComponent implements OnInit {
     }
   }
 
-  addPlayerToTeamRandom(): void {
-    for (let i = 0; i < 4; i++) {
-      let player: Player;
-      do {
-        player = this.getRandomPlayer();
-      } while (this.isPlayerInTeam(player));
+  addPlayerToTeamRandomly(players: Player[]): void {
+    //TODO !!!
+/*    for () {
+      let player;
+      player = this.getRandomPlayer(players);
       this.addPlayerToTeam(player);
-    }
+      players.splice(players.indexOf(player), 1);
+    }*/
   }
 
-  getRandomPlayer(): Player {
-    const randomIndex = Math.floor((Math.random() * this.players.length));
-    return this.players[randomIndex];
+  getRandomPlayer(players: Player[]): Player {
+    const randomIndex = Math.floor((Math.random() * players.length));
+    return players[randomIndex];
   }
 
   onTeam1PointChange() {
@@ -160,5 +160,66 @@ export class NewMatchComponent implements OnInit {
     });
   }
 
+  checkTeamsFull() {
+    if (this.match.team1.player1 === null ||
+        this.match.team1.player2 === null ||
+        this.match.team2.player1 === null ||
+        this.match.team2.player2 === null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  openRandomDialog() {
+    const dialogRef = this.dialog.open(RandomPlayerSelectorDialogComponent, {
+      minWidth: '400px',
+      minHeight: '100px',
+      maxHeight: '600px',
+      data: {
+        players: this.players
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.addPlayerToTeamRandomly(result);
+      } else {
+
+      }
+
+      //TODO Animations?
+    });
+  }
+
+}
+
+@Component({
+  selector: 'app-random-player-selector-dialog',
+  templateUrl: 'random-player-selector-dialog.component.html',
+})
+export class RandomPlayerSelectorDialogComponent {
+
+  constructor(public dialogRef: MatDialogRef<RandomPlayerSelectorDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
+
+
+  toggleSelect(selectToggle, playerSelection) {
+    if (selectToggle.checked) {
+      playerSelection.selectAll();
+    } else if (!selectToggle.checked) {
+      playerSelection.deselectAll();
+    }
+  }
+
+  submitSelectedPlayers(playerSelection) {
+    if (playerSelection.selectedOptions.selected.length > 1) {
+      const selectedPlayers = [];
+      for (const selectOption of playerSelection.selectedOptions.selected) {
+        selectedPlayers.push(selectOption.value);
+      }
+      this.dialogRef.close(selectedPlayers);
+    }
+  }
 }
 
