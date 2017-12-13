@@ -122,13 +122,13 @@ export class NewMatchComponent implements OnInit {
   }
 
   addPlayerToTeamRandomly(players: Player[]): void {
-    //TODO !!!
-/*    for () {
+    const i = players.length;
+    for (let count = 0; count < i; count++) {
       let player;
       player = this.getRandomPlayer(players);
       this.addPlayerToTeam(player);
       players.splice(players.indexOf(player), 1);
-    }*/
+    }
   }
 
   getRandomPlayer(players: Player[]): Player {
