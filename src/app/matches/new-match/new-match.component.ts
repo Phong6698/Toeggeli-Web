@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {trigger, style, transition, animate, keyframes, query, stagger, state, useAnimation} from '@angular/animations';
+import {trigger, transition, useAnimation} from '@angular/animations';
 import {
   bounceInDown,
   bounceOutUp,
@@ -15,8 +15,6 @@ import {PlayerService} from '../../players/shared/player.service';
 import {MatchService} from '../shared/match.service';
 import {Player} from '../../players/shared/player.model';
 import {Match} from '../shared/match.model';
-import {Team} from '../../teams/shared/team.model';
-
 
 @Component({
   selector: 'app-new-match',
@@ -62,16 +60,7 @@ export class NewMatchComponent implements OnInit {
 
   players: Player[];
 
-  team1 = new Team();
-  team2 = new Team();
-
-  player1: Player = null;
-  player2: Player = null;
-  player3: Player = null;
-  player4: Player = null;
-
-  score1: number;
-  score2: number;
+  match: Match;
 
   isResultState = false;
 
@@ -80,6 +69,7 @@ export class NewMatchComponent implements OnInit {
   ];
 
   constructor(private playerService: PlayerService, private matchService: MatchService) {
+    this.match = new Match();
   }
 
 
@@ -91,68 +81,53 @@ export class NewMatchComponent implements OnInit {
     this.playerService.getPlayers().subscribe(players => this.players = players);
     this.sortPlayers();
   }
+
   addNewPlayer() {
     this.playerService.addPlayer({id: null, name: this.newPlayer}).subscribe(player => {
       /*this.players.push(player);*/
-    })
-    this.newPlayer = '';
-    this.sortPlayers();
+      this.newPlayer = '';
+      this.sortPlayers();
+    });
   }
 
   addNewMatch(): void {
-    const match = new Match();
-
-    //TODO Alles noch mit ngModel match
-    //Richtig hässlich
-    this.team1.player1 = this.player1;
-    this.team1.player2 = this.player2;
-    this.team2.player1 = this.player3;
-    this.team2.player2 = this.player4;
-    match.team1 = this.team1;
-    match.team2 = this.team2;
-    match.score1 = this.score1;
-    match.score2 = this.score2;
-
-    this.matchService.addMatch(match).subscribe(() => {
+    this.matchService.addMatch(this.match).subscribe(() => {
       //TODO start animation and go to dashboard
       console.log('Match saved');
     });
   }
 
-
-  //TODO nicht player aus der liste löschen...
   addPlayerToTeam(player): void {
-    if (this.player1 == null) {
-      this.player1 = player;
-      this.players.splice(this.players.indexOf(player), 1);
-    } else if (this.player2 == null) {
-      this.player2 = player;
-      this.players.splice(this.players.indexOf(player), 1);
-    }else if (this.player3 == null) {
-      this.player3 = player;
-      this.players.splice(this.players.indexOf(player), 1);
-    }else if (this.player4 == null) {
-      this.player4 = player;
-      this.players.splice(this.players.indexOf(player), 1);
+    if (this.match.team1.player1 == null) {
+      this.match.team1.player1 = player;
+    } else if (this.match.team1.player2 == null) {
+      this.match.team1.player2 = player;
+    } else if (this.match.team2.player1 == null) {
+      this.match.team2.player1 = player;
+    } else if (this.match.team2.player2 == null) {
+      this.match.team2.player2 = player;
+    } else {
+    }
+  }
+
+  isPlayerInTeam(player: Player): boolean {
+    if (this.match.team1.player1 === player ||
+      this.match.team1.player2 === player ||
+      this.match.team2.player1 === player ||
+      this.match.team2.player2 === player) {
+      return true;
+    } else {
+      return false;
     }
   }
 
   addPlayerToTeamRandom(): void {
-    if (this.player1 == null) {
-      this.player1 = this.getRandomPlayer();
-      this.players.splice(this.players.indexOf(this.player1), 1);
-    }
-    if (this.player2 == null) {
-      this.player2 = this.getRandomPlayer();
-      this.players.splice(this.players.indexOf(this.player2), 1);
-    }
-    if (this.player3 == null) {
-      this.player3 = this.getRandomPlayer();
-      this.players.splice(this.players.indexOf(this.player3), 1);
-    }
-    if (this.player4 == null) {
-      this.player4 = this.getRandomPlayer();
-      this.players.splice(this.players.indexOf(this.player4), 1);
+    for (let i = 0; i < 4; i++) {
+      let player: Player;
+      do {
+        player = this.getRandomPlayer();
+      } while (this.isPlayerInTeam(player));
+      this.addPlayerToTeam(player);
     }
   }
 
@@ -161,24 +136,15 @@ export class NewMatchComponent implements OnInit {
     return this.players[randomIndex];
   }
 
-  deletePlayerFromTeam(player): void {
-    if (!this.isResultState) {
-      this.players.push(player);
-      this.sortPlayers();
-      player = null;
-    }
-
-  }
-
   onTeam1PointChange() {
-    if (this.score1 !== 10) {
-      this.score2 = 10;
+    if (this.match.score1 !== 10) {
+      this.match.score2 = 10;
     }
   }
 
   onTeam2PointChange() {
-    if (this.score2 !== 10) {
-      this.score1 = 10;
+    if (this.match.score2 !== 10) {
+      this.match.score1 = 10;
     }
   }
 

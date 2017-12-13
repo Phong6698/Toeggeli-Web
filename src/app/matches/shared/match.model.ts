@@ -8,4 +8,9 @@ export class Match {
   score2: number;
   datum: string;
 
+
+  constructor() {
+    this.team1 = new Team();
+    this.team2 = new Team();
+  }
 }
