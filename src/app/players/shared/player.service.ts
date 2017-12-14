@@ -1,35 +1,36 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Player} from './player.model';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import {Observable} from 'rxjs/Observable';
+import {environment} from '../../../environments/environment';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable()
 export class PlayerService {
 
-  playersMock = [
-    {id: 1, name: 'Carsten'},
-    {id: 2, name: 'Lars'},
-    {id: 3, name: 'Dani'},
-    {id: 4, name: 'Marcel'},
-    {id: 5, name: 'Rene'},
-    {id: 6, name: 'Ueli'},
-    {id: 7, name: 'Sven'},
-    {id: 8, name: 'Simon'},
-    {id: 9, name: 'Peter'},
-    {id: 10, name: 'Phong'},
-  ];
+  private playerUrl = `${environment.restApiURL}/player`;
 
-
-  contructor() {
-
+  constructor(private http: HttpClient) {
   }
 
   getPlayers(): Observable<Player[]> {
-    return of(this.playersMock);
+    return this.http.get<Player[]>(this.playerUrl).pipe(
+      catchError(this.handleError)
+    );
   }
 
   addPlayer(player: Player): Observable<Player> {
-    this.playersMock.push(player);
-    return of(player);
+    return this.http.post<Player>(this.playerUrl, player, httpOptions).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 }
