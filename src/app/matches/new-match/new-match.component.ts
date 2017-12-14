@@ -92,7 +92,7 @@ export class NewMatchComponent implements OnInit {
 
   addNewMatch(): void {
     this.matchService.addMatch(this.match).subscribe(() => {
-      //TODO start animation and go to dashboard
+      // TODO start animation and go to dashboard
       console.log('Match saved');
     });
   }
@@ -106,18 +106,6 @@ export class NewMatchComponent implements OnInit {
       this.match.team2.player1 = player;
     } else if (this.match.team2.player2 == null) {
       this.match.team2.player2 = player;
-    } else {
-    }
-  }
-
-  isPlayerInTeam(player: Player): boolean {
-    if (this.match.team1.player1 === player ||
-      this.match.team1.player2 === player ||
-      this.match.team2.player1 === player ||
-      this.match.team2.player2 === player) {
-      return true;
-    } else {
-      return false;
     }
   }
 
@@ -171,13 +159,30 @@ export class NewMatchComponent implements OnInit {
     }
   }
 
+  isPlayerInTeam(player: Player): boolean {
+    if (this.match.team1.player1 === player ||
+      this.match.team1.player2 === player ||
+      this.match.team2.player1 === player ||
+      this.match.team2.player2 === player) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   openRandomDialog() {
+    const playersNotInTeam = [];
+    for (const player of this.players) {
+      if (!this.isPlayerInTeam(player)) {
+        playersNotInTeam.push(player);
+      }
+    }
     const dialogRef = this.dialog.open(RandomPlayerSelectorDialogComponent, {
       minWidth: '400px',
       minHeight: '100px',
       maxHeight: '600px',
       data: {
-        players: this.players
+        players: playersNotInTeam
       }
     });
 
@@ -188,7 +193,7 @@ export class NewMatchComponent implements OnInit {
 
       }
 
-      //TODO Animations?
+      // TODO Animations?
     });
   }
 

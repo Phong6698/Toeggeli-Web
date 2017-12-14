@@ -30,6 +30,7 @@ ngh
 - Logo jumbotron (Football field)
 - Result button in matchbox
 - Random button somewhere else
+- Random animation (spinner or like flicker go through names)
 
 
 
