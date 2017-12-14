@@ -1,0 +1,139 @@
+<div class="container-fluid" style="padding-left: 5%; padding-right: 5%">
+  <div class="row" style="margin-top: 5rem">
+
+    <div class="match-column col-12" [@showMatchColumn] [@hideMatchColumn] [ngClass]="{'col-xl-8': !isResultState}">
+      <mat-card style="background-color: #FCFCFC">
+        <div class="match-box row">
+          <div class="team border col">
+            <div class="row">
+              <div class="team-title col-12">
+                <h3 class="text-center">Team 1</h3>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-12 text-center">
+                <button class="player-button" mat-raised-button [@addBounceAnimation]
+                        (click)="match.team1.player1 = null"
+                        color="accent" *ngIf="match.team1.player1 !== null">
+                  {{match.team1.player1.name}}
+                </button>
+                <button mat-button class="player-placeholder" disabled *ngIf="match.team1.player1 === null">Player 1
+                </button>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-12 text-center">
+                <button class="player-button" mat-raised-button [@addBounceAnimation]
+                        (click)="match.team1.player2 = null"
+                        color="accent" *ngIf="match.team1.player2 !== null">
+                  {{match.team1.player2.name}}
+                </button>
+                <button mat-button class="player-placeholder" disabled *ngIf="match.team1.player2 === null">Player 2
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="w-100 d-none d-md-block d-lg-none" *ngIf="isResultState"></div>
+          <div class="col-1 text-center" [@showPoints] *ngIf="isResultState">
+            <mat-form-field class="point-select">
+              <mat-select placeholder="Points" [(ngModel)]="match.score1" (selectionChange)="onTeam1PointChange()">
+                <mat-option *ngFor="let point of points" [value]="point">
+                  {{point}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="w-100 d-none d-md-block d-lg-none"></div>
+          <div class="col-12 col-xl-1 text-center">
+            <h3 class="text-center" style="margin-top: 3rem">VS</h3>
+          </div>
+          <div class="w-100 d-none d-md-block d-lg-none" *ngIf="isResultState"></div>
+          <div class="col-1 text-center" [@showPoints] *ngIf="isResultState">
+            <mat-form-field class="point-select">
+              <mat-select placeholder="Points" [(ngModel)]="match.score2" (selectionChange)="onTeam2PointChange()">
+                <mat-option *ngFor="let point of points" [value]="point">
+                  {{point}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="w-100 d-none d-md-block d-lg-none"></div>
+          <div class="team border col">
+            <div class="row">
+              <div class="team-title col-12">
+                <h3 class="text-center">Team 2</h3>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-12 text-center">
+                <button class="player-button" mat-raised-button [@addBounceAnimation]
+                        (click)="match.team2.player1 = null"
+                        color="accent" *ngIf="match.team2.player1 !== null">
+                  {{match.team2.player1.name}}
+                </button>
+                <button mat-button class="player-placeholder" disabled *ngIf="match.team2.player1 === null">Player 3
+                </button>
+              </div>
+              <div class="w-100"></div>
+              <div class="col-12 text-center">
+                <button class="player-button" mat-raised-button [@addBounceAnimation]
+                        (click)="match.team2.player2 = null"
+                        color="accent" *ngIf="match.team2.player2 !== null">
+                  {{match.team2.player2.name}}
+                </button>
+                <button mat-button class="player-placeholder" disabled *ngIf="match.team2.player2 === null">Player 4
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" >
+          <div class="col text-center result-buttons">
+            <button *ngIf="!isResultState && checkTeamsFull()" mat-raised-button color="primary"
+                    (click)="isResultState = true">Resultat eingeben
+            </button>
+            <button *ngIf="isResultState" mat-raised-button color="primary" (click)=" isResultState = false">Zurück
+            </button>
+            <button *ngIf="isResultState" mat-raised-button color="primary" (click)="addNewMatch()">Speichern</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+
+    <div class="players-column col" *ngIf="!isResultState" [@showPlayerColumn] [@hidePlayerColumn]>
+      <div class="text-center">
+        <h3>Spieler</h3>
+      </div>
+      <div class="players-box text-center">
+        <ng-template ngFor let-player [ngForOf]="players">
+          <button class="player-button" *ngIf="!isPlayerInTeam(player)" mat-raised-button
+                  color="accent" (click)="addPlayerToTeam(player)"
+                  matTooltip="Click to add {{player.name}} to the match">
+            {{player.name}}
+          </button>
+        </ng-template>
+      </div>
+      <div class="row" style="margin: 1rem; padding-top: 20px">
+        <div class="col-12 text-center">
+          <button mat-raised-button matTooltip="Add Player randomly" [disabled]="checkTeamsFull()" color="primary"
+                  style="margin: 1em" (click)="openRandomDialog()">
+            <mat-icon>casino</mat-icon>
+          </button>
+        </div>
+        <div class="w-100"></div>
+        <div class="col-12 text-center">
+          <div class="row">
+            <div class="col text-center">
+              <mat-form-field>
+                <input matInput [matKeyboard]="'de-CH'" [(ngModel)]="newPlayer" placeholder="Add new Player">
+                <!--TODO A open keyboard button-->
+              </mat-form-field>
+            </div>
+            <div class="col text-center" *ngIf="newPlayer != ''">
+              <button mat-raised-button (click)="addNewPlayer()" color="primary">Spieler hinzufügen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

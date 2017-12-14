@@ -9,23 +9,26 @@ import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatToolbarModule, MatTooltipModule
+  MatListModule, MatSelectModule, MatSlideToggleModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
-import {GameDashboardComponent} from './game-dashboard/game-dashboard.component';
-import {NewGameComponent} from './new-game/new-game.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {NewMatchComponent, RandomPlayerSelectorDialogComponent} from './matches/new-match/new-match.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
-
+import 'hammerjs';
+import {HttpClientModule} from '@angular/common/http';
+import {MatchService} from './matches/shared/match.service';
+import {PlayerService} from './players/shared/player.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GameDashboardComponent,
-    NewGameComponent,
-
+    DashboardComponent,
+    NewMatchComponent,
+    RandomPlayerSelectorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,10 +47,14 @@ import { MatKeyboardModule } from '@ngx-material-keyboard/core';
     MatToolbarModule,
     MatTooltipModule,
     MatCardModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     FormsModule,
+    HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [MatchService, PlayerService],
+  bootstrap: [AppComponent],
+  entryComponents: [RandomPlayerSelectorDialogComponent]
 })
 export class AppModule { }

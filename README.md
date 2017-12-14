@@ -22,17 +22,26 @@ ngh
 ```
 
 
+##Ideas
+- Bigger buttons
+- Select wheel for result 0-10
+- For new game: background teambox football field and players a sitting bank
+- Google Icon Font self hosting https://google.github.io/material-design-icons/#icon-font-for-the-web
+- Logo jumbotron (Football field)
+- Result button in matchbox
+- Random button somewhere else
+- Random animation (spinner or like flicker go through names)
+
+
+
+
 ## Some stuff
 ### npm ERR! Please try running this command again as root/Administrator.
 ```
 npm install <something> --no-optional
 ```
 
-### ERROR in Error: Error encountered resolving symbol values statically. 
+### Access outside localhost
 ```
-import {bounceInDown, bounceOutUp} from 'ng-animate/lib';
-```
-to
-```
-import {bounceInDown, bounceOutUp} from 'ng-animate';
+ng serve --host 0.0.0.0
 ```

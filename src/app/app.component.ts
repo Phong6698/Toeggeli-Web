@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import 'hammerjs';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +10,8 @@ export class AppComponent implements OnInit {
 
   navLinks = [
     { path: '/dashboard', label: 'Dashboard' },
-    { path: '/new-game', label: 'New Game' }
+    { path: '/new-match', label: 'Neues Spiel' }
   ];
-
-
 
   ngOnInit(): void {
 
