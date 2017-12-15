@@ -1,0 +1,22 @@
+button {
+  margin: 5px;
+}
+
+.match-box {
+  margin: 1em;
+}
+
+.winner {
+  button {
+    background-color: #43a047;
+    color: white;
+  }
+}
+
+
+.loser {
+  button{
+    background-color: #f44336;
+    color: white;
+  }
+}

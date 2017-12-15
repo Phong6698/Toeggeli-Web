@@ -21,8 +21,7 @@ ng build --prod --base-href "https://phong6698.github.io/Toeggeli-Web/"
 ngh
 ```
 
-
-##Ideas
+## Ideas
 - Bigger buttons
 - Select wheel for result 0-10
 - For new game: background teambox football field and players a sitting bank
@@ -31,6 +30,7 @@ ngh
 - Result button in matchbox
 - Random button somewhere else
 - Random animation (spinner or like flicker go through names)
+- directive/component for Team
 
 
 

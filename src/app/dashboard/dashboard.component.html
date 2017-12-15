@@ -1,5 +1,8 @@
-<ul>
-  <li *ngFor="let match of matches">
-    {{match.team1.player1.name}}&{{match.team1.player2.name}} {{match.score1}}:{{match.score2}} {{match.team2.player1.name}}&{{match.team2.player2.name}}
-  </li>
-</ul>
+<div class="container-fluid">
+  <div class="row" style="margin-top: 1rem">
+    <div class="col"></div>
+    <div class="col-5">
+      <app-match-history></app-match-history>
+    </div>
+  </div>
+</div>

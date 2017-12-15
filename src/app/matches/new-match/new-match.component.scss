@@ -31,11 +31,6 @@ button {
   transition-delay: 400ms;
 }
 
-.team {
-  margin-left: 1rem;
-  margin-right: 1em;
-}
-
 .team-title {
   margin-bottom: 1em;
   margin-top: 1em;
@@ -43,19 +38,24 @@ button {
 
 .players-box {
   margin: 1rem;
+
+  .player-button {
+    margin: 1em;
+  }
 }
 
-.players-box .player-button {
-  margin: 1em;
-}
+.team {
+  margin-left: 1rem;
+  margin-right: 1em;
 
-.team .player-button {
-  margin-bottom: 1em;
+  .player-button {
+    margin-bottom: 1em;
+  }
 }
 
 .point-select {
   width: 80px;
-  margin-top: 3rem;
 }
+
 
 

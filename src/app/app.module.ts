@@ -21,6 +21,7 @@ import 'hammerjs';
 import {HttpClientModule} from '@angular/common/http';
 import {MatchService} from './matches/shared/match.service';
 import {PlayerService} from './players/shared/player.service';
+import {MatchHistoryComponent} from './matches/match-history/match-history.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {PlayerService} from './players/shared/player.service';
     AppComponent,
     DashboardComponent,
     NewMatchComponent,
-    RandomPlayerSelectorDialogComponent
+    RandomPlayerSelectorDialogComponent,
+    MatchHistoryComponent,
   ],
   imports: [
     BrowserModule,
