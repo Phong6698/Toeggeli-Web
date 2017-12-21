@@ -9,7 +9,7 @@ import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatSelectModule, MatSlideToggleModule, MatToolbarModule, MatTooltipModule
+  MatListModule, MatSelectModule, MatSlideToggleModule, MatTableModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -27,6 +27,8 @@ import {StompConfig, StompService} from '@stomp/ng2-stompjs';
 import * as SockJS from 'sockjs-client';
 import {ChatComponent} from './chat/chat.component';
 import {ChatService} from './chat/chat.service';
+import {TeamRankingComponent} from './statistics/team-ranking/team-ranking.component';
+import {StatisticService} from './statistics/shared/statistic.service';
 
 export function socketProvider() {
 /*  return new SockJS('http://localhost:8088/socket');*/
@@ -66,6 +68,7 @@ const stompConfig: StompConfig = {
     RandomPlayerSelectorDialogComponent,
     MatchHistoryComponent,
     ChatComponent,
+    TeamRankingComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,11 +89,12 @@ const stompConfig: StompConfig = {
     MatCardModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatTableModule,
     FormsModule,
     HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [MatchService, PlayerService, ChatService, StompService,
+  providers: [MatchService, PlayerService, ChatService, StatisticService, StompService,
     {
       provide: StompConfig,
       useValue: stompConfig

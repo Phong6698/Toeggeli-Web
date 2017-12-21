@@ -17,15 +17,11 @@ export class MatchService {
   }
 
   addMatch(match: Match): Observable<Match> {
-    return this.http.post<Match>(this.matchUrl, match, httpOptions).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post<Match>(this.matchUrl, match, httpOptions).pipe(catchError(this.handleError));
   }
 
   getMatches(): Observable<Match[]> {
-    return this.http.get<Match[]>(this.matchUrl).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<Match[]>(this.matchUrl).pipe(catchError(this.handleError));
   }
 
   private handleError(error: any): Promise<any> {

@@ -20,7 +20,8 @@ export class MatchHistoryComponent implements OnInit {
 
   getMatches() {
     this.matchService.getMatches().subscribe(matches => {
-      this.matches = matches;
+      this.matches = matches.reverse();
+      this.matches.splice(5); // The Last 5 Matches
     });
 
     // TODO Sortiering -> Datum fehlt noch

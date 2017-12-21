@@ -18,15 +18,11 @@ export class PlayerService {
   }
 
   getPlayers(): Observable<Player[]> {
-    return this.http.get<Player[]>(this.playerUrl).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<Player[]>(this.playerUrl).pipe(catchError(this.handleError));
   }
 
   addPlayer(player: Player): Observable<Player> {
-    return this.http.post<Player>(this.playerUrl, player, httpOptions).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post<Player>(this.playerUrl, player, httpOptions).pipe(catchError(this.handleError));
   }
 
   private handleError(error: any): Promise<any> {

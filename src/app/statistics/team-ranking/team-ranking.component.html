@@ -1,0 +1,34 @@
+<mat-card class="text-center">
+  <h3>Team Ranking</h3>
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="team">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Team</mat-header-cell>
+      <mat-cell *matCellDef="let statistic">{{statistic.team.player1.name}} & {{statistic.team.player2.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="wins">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Wins</mat-header-cell>
+      <mat-cell *matCellDef="let statistic">{{statistic.wins}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="losses">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Losses</mat-header-cell>
+      <mat-cell *matCellDef="let statistic">{{statistic.losses}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="winrate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Winrate</mat-header-cell>
+      <mat-cell *matCellDef="let statistic">{{(100/(statistic.wins+statistic.losses)*statistic.wins)}}%</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="matches">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Matches</mat-header-cell>
+      <mat-cell *matCellDef="let statistic">{{statistic.wins+statistic.losses}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>
+
