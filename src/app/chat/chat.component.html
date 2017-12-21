@@ -1,0 +1,18 @@
+<mat-card class="text-center">
+  <h3>Chat</h3>
+  <div class="row text-center">
+    <div class="col">
+      <textarea style="min-height: 300px; width: 100%" disabled>{{chatMessage}}</textarea>
+    </div>
+  </div>
+  <div class="row text-center" style="margin: 1em">
+    <div class="col">
+      <mat-form-field>
+        <input matInput [(ngModel)]="newMessage" placeholder="Text" (keydown.enter)="sendMessage()">
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</mat-card>

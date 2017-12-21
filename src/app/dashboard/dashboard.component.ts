@@ -11,16 +11,19 @@ export class DashboardComponent implements OnInit {
 
   matches: Match[] = [];
 
-  constructor(private matchService: MatchService) {}
+  constructor(private matchService: MatchService) {
+
+  }
 
   ngOnInit(): void {
     this.getMatches();
+
   }
+
 
   getMatches() {
     this.matchService.getMatches().subscribe(matches => {
       this.matches = matches;
     });
   }
-
 }

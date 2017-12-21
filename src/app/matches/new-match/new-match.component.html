@@ -123,7 +123,7 @@
           <div class="row">
             <div class="col text-center">
               <mat-form-field>
-                <input matInput [matKeyboard]="'de-CH'" [(ngModel)]="newPlayer" placeholder="Add new Player">
+                <input matInput [matKeyboard]="'de-CH'" [(ngModel)]="newPlayer" placeholder="Add new Player" (keydown.enter)="addNewPlayer()">
                 <!--TODO A open keyboard button-->
               </mat-form-field>
             </div>
