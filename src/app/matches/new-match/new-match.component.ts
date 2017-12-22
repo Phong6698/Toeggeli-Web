@@ -57,20 +57,24 @@ import {Router} from '@angular/router';
 })
 export class NewMatchComponent implements OnInit {
 
-  newPlayer = '';
+  newPlayer: string;
 
-  players: Player[] = [];
+  players: Player[];
 
   match: Match;
 
-  isResultState = false;
+  isResultState: boolean;
 
-  points = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-  ];
+  points: any;
 
   constructor(private playerService: PlayerService, private matchService: MatchService, public dialog: MatDialog, private router: Router) {
+    this.newPlayer  = '';
     this.match = new Match();
+    this.players  = [];
+    this.isResultState = false;
+    this.points = [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    ];
   }
 
 

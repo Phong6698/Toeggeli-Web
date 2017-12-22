@@ -1,0 +1,53 @@
+.player-placeholder {
+  border: dotted;
+  border-color: #ff9380;
+  margin-bottom: 1em;
+  font-style: italic;
+  font-size: medium;
+}
+
+button {
+  font-size: large;
+  min-width: 110px;
+  min-height: 50px;
+}
+
+.quick-match-button {
+  margin: 1em;
+}
+
+.result-buttons {
+  margin-top: 1em;
+  flex-grow: 1;
+  transition: all 400ms ease;
+  transition-delay: 400ms;
+}
+
+.team-title {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.players-box {
+  margin: 1rem;
+
+  .player-button {
+    margin: 1em;
+  }
+}
+
+.team {
+  margin-left: 1rem;
+  margin-right: 1em;
+
+  .player-button {
+    margin-bottom: 1em;
+  }
+}
+
+.point-select {
+  width: 80px;
+}
+
+
+

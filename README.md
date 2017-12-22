@@ -8,6 +8,7 @@ Töggeli Angular App
 - https://github.com/ngx-material-keyboard/core (On screen keyboard)
 - https://github.com/stomp-js/ng2-stompjs (STOMP Support for Angular)
 - https://github.com/sockjs/sockjs-client (WebSocket Handling)
+- https://github.com/crisbeto/angular-svg-round-progressbar (Round progressbar)
 
 
 ## Github Page

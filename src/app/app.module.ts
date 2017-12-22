@@ -29,6 +29,10 @@ import {ChatComponent} from './chat/chat.component';
 import {ChatService} from './chat/chat.service';
 import {TeamRankingComponent} from './statistics/team-ranking/team-ranking.component';
 import {StatisticService} from './statistics/shared/statistic.service';
+import {PlayerRankingComponent} from './statistics/player-ranking/player-ranking.component';
+import {RoundProgressModule} from 'angular-svg-round-progressbar';
+import {CdkTableModule} from '@angular/cdk/table';
+import {QuickMatchComponent} from './matches/quick-match/quick-match.component';
 
 export function socketProvider() {
 /*  return new SockJS('http://localhost:8088/socket');*/
@@ -69,6 +73,8 @@ const stompConfig: StompConfig = {
     MatchHistoryComponent,
     ChatComponent,
     TeamRankingComponent,
+    PlayerRankingComponent,
+    QuickMatchComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +96,8 @@ const stompConfig: StompConfig = {
     MatSelectModule,
     MatSlideToggleModule,
     MatTableModule,
+    CdkTableModule,
+    RoundProgressModule,
     FormsModule,
     HttpClientModule,
     NgbModule.forRoot()

@@ -17,6 +17,11 @@ export class StatisticService {
     return this.http.get<Statistic[]>(url).pipe(catchError(this.handleError));
   }
 
+  getPlayerRanking(): Observable<Statistic[]> {
+    const url = `${this.statisticUrl}/ranking/player`;
+    return this.http.get<Statistic[]>(url).pipe(catchError(this.handleError));
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
