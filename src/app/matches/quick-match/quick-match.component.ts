@@ -4,7 +4,7 @@ import {Match} from '../shared/match.model';
 import {PlayerService} from '../../players/shared/player.service';
 import {Player} from '../../players/shared/player.model';
 import {trigger, transition, useAnimation} from '@angular/animations';
-import {bounceOutUp, bounceInDown} from 'ng-animate/lib';
+import {bounceOutUp, bounceInDown} from 'ng-animate';
 
 @Component({
   selector: 'app-quick-match',
