@@ -10,8 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build.dev": "ng build --environment=dev --aot=true",
-    "build.abt": "ng build --target=production --environment=abt --aot=true",
-    "build.prd": "ng build --target=production --environment=prd --aot=true"
+    "build.int": "ng build --target=production --environment=int --aot=true"
+
   },
   "private": true,
   "dependencies": {

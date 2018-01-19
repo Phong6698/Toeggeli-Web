@@ -11,7 +11,7 @@ export class ChatComponent implements OnInit {
 
   newMessage = '';
   chatMessage = '';
-  toggled = true;
+  toggled = false;
 
   constructor(private chatService: ChatService) {
   }

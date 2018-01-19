@@ -27,8 +27,7 @@
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.dev.ts",
-        "prd": "environments/environment.prd.ts",
-        "abt": "environments/environment.abt.ts"
+        "int": "environments/environment.int.ts"
       }
     }
   ],
