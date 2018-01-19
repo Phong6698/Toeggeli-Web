@@ -12,16 +12,8 @@ button {
   min-height: 50px;
 }
 
-.col-12 {
-  flex-grow: 1;
-  transition: all 400ms ease;
-  transition-delay: 400ms;
-}
-
-.col-xl-8 {
-  flex-shrink: 1;
-  transition: all 400ms ease;
-  transition-delay: 0ms;
+.quick-match-button {
+  margin: 1em;
 }
 
 .result-buttons {

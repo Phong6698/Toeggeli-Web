@@ -16,6 +16,7 @@ import {MatchService} from '../shared/match.service';
 import {Player} from '../../players/shared/player.model';
 import {Match} from '../shared/match.model';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-match',
@@ -56,20 +57,24 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 })
 export class NewMatchComponent implements OnInit {
 
-  newPlayer = '';
+  newPlayer: string;
 
   players: Player[];
 
   match: Match;
 
-  isResultState = false;
+  isResultState: boolean;
 
-  points = [
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-  ];
+  points: any;
 
-  constructor(private playerService: PlayerService, private matchService: MatchService, public dialog: MatDialog) {
+  constructor(private playerService: PlayerService, private matchService: MatchService, public dialog: MatDialog, private router: Router) {
+    this.newPlayer  = '';
     this.match = new Match();
+    this.players  = [];
+    this.isResultState = false;
+    this.points = [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    ];
   }
 
 
@@ -78,13 +83,15 @@ export class NewMatchComponent implements OnInit {
   }
 
   getPlayers(): void {
-    this.playerService.getPlayers().subscribe(players => this.players = players);
-    this.sortPlayers();
+    this.playerService.getPlayers().subscribe(players => {
+      this.players = players;
+      this.sortPlayers();
+    });
   }
 
   addNewPlayer() {
     this.playerService.addPlayer({id: null, name: this.newPlayer}).subscribe(player => {
-      /*this.players.push(player);*/
+      this.players.push(player);
       this.newPlayer = '';
       this.sortPlayers();
     });
@@ -92,8 +99,9 @@ export class NewMatchComponent implements OnInit {
 
   addNewMatch(): void {
     this.matchService.addMatch(this.match).subscribe(() => {
-      // TODO start animation and go to dashboard
+      // TODO start animation
       console.log('Match saved');
+      this.router.navigateByUrl('/');
     });
   }
 
@@ -127,12 +135,16 @@ export class NewMatchComponent implements OnInit {
   onTeam1PointChange() {
     if (this.match.score1 !== 10) {
       this.match.score2 = 10;
+    } else if (this.match.score1 === 10 && this.match.score2 === 10) {
+      this.match.score2 = null;
     }
   }
 
   onTeam2PointChange() {
     if (this.match.score2 !== 10) {
       this.match.score1 = 10;
+    } else if (this.match.score2 === 10 && this.match.score1 === 10) {
+      this.match.score1 = null;
     }
   }
 

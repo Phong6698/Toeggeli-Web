@@ -20,14 +20,14 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.dev.ts",
-        "prd": "environments/environment.prd.ts",
-        "abt": "environments/environment.abt.ts"
+        "int": "environments/environment.int.ts"
       }
     }
   ],

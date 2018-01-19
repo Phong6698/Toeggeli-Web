@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="w-100 d-none d-md-block d-lg-none" *ngIf="isResultState"></div>
-          <div class="col-1 text-center" [@showPoints] *ngIf="isResultState">
+          <div class="col-1 text-center align-self-center" [@showPoints] *ngIf="isResultState">
             <mat-form-field class="point-select">
               <mat-select placeholder="Points" [(ngModel)]="match.score1" (selectionChange)="onTeam1PointChange()">
                 <mat-option *ngFor="let point of points" [value]="point">
@@ -42,11 +42,11 @@
             </mat-form-field>
           </div>
           <div class="w-100 d-none d-md-block d-lg-none"></div>
-          <div class="col-12 col-xl-1 text-center">
-            <h3 class="text-center" style="margin-top: 3rem">VS</h3>
+          <div class="col-12 col-xl-1 align-self-center text-center">
+            <h3>VS</h3>
           </div>
           <div class="w-100 d-none d-md-block d-lg-none" *ngIf="isResultState"></div>
-          <div class="col-1 text-center" [@showPoints] *ngIf="isResultState">
+          <div class="col-1 text-center align-self-center" [@showPoints] *ngIf="isResultState">
             <mat-form-field class="point-select">
               <mat-select placeholder="Points" [(ngModel)]="match.score2" (selectionChange)="onTeam2PointChange()">
                 <mat-option *ngFor="let point of points" [value]="point">
@@ -123,12 +123,12 @@
           <div class="row">
             <div class="col text-center">
               <mat-form-field>
-                <input matInput [matKeyboard]="'de-CH'" [(ngModel)]="newPlayer" placeholder="Add new Player">
+                <input matInput [matKeyboard]="'de-CH'" [(ngModel)]="newPlayer" placeholder="Add new Player" (keydown.enter)="addNewPlayer()">
                 <!--TODO A open keyboard button-->
               </mat-form-field>
             </div>
             <div class="col text-center" *ngIf="newPlayer != ''">
-              <button mat-raised-button (click)="addNewPlayer()" color="primary">Spieler hinzufügen
+              <button mat-raised-button (click)="addNewPlayer()" color="primary"> <mat-icon>add</mat-icon>
               </button>
             </div>
           </div>
