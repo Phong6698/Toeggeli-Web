@@ -10,7 +10,8 @@ export class AppComponent implements OnInit {
 
   navLinks = [
     { path: '/dashboard', label: 'Dashboard' },
-    { path: '/new-match', label: 'Neues Spiel' }
+    { path: '/new-match', label: 'Neues Spiel' },
+    { path: '/statistic', label: 'Statistiken' }
   ];
 
   ngOnInit(): void {

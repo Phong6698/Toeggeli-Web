@@ -9,7 +9,8 @@ import {
   MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule, MatSelectModule, MatSlideToggleModule, MatTableModule, MatToolbarModule, MatTooltipModule
+  MatListModule, MatSelectModule, MatSlideToggleModule, MatSortModule, MatTableModule, MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -33,6 +34,7 @@ import {PlayerRankingComponent} from './statistics/player-ranking/player-ranking
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import {CdkTableModule} from '@angular/cdk/table';
 import {QuickMatchComponent} from './matches/quick-match/quick-match.component';
+import {StatisticComponent} from './statistics/statistic/statistic.component';
 
 export function socketProvider() {
 /*  return new SockJS('http://localhost:8088/socket');*/
@@ -75,6 +77,7 @@ const stompConfig: StompConfig = {
     TeamRankingComponent,
     PlayerRankingComponent,
     QuickMatchComponent,
+    StatisticComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +99,7 @@ const stompConfig: StompConfig = {
     MatSelectModule,
     MatSlideToggleModule,
     MatTableModule,
+    MatSortModule,
     CdkTableModule,
     RoundProgressModule,
     FormsModule,

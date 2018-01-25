@@ -1,10 +1,10 @@
 <mat-card class="text-center">
-  <h3>Team Ranking</h3>
+  <h3>{{title}}</h3>
   <mat-table #table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="team">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Team</mat-header-cell>
-      <mat-cell *matCellDef="let statistic">{{statistic.team.player1.name}} & {{statistic.team.player2.name}}</mat-cell>
+      <mat-cell *matCellDef="let statistic">{{statistic.team}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="wins">
@@ -20,16 +20,16 @@
     <ng-container matColumnDef="winrate">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Winrate</mat-header-cell>
       <mat-cell *matCellDef="let statistic">
-        <round-progress [max]="statistic.wins+statistic.losses" [current]="statistic.wins" [color]="'#43a047'"
+        <round-progress [max]="statistic.matches" [current]="statistic.wins" [color]="'#43a047'"
                         [background]="'#f44336'" [stroke]="25" [responsive]="true">
         </round-progress>
-        {{(100/(statistic.wins+statistic.losses)*statistic.wins) | number: '1.0-0'}}%  <!--TODO In the circle-->
+        {{statistic.winrate | number: '1.0-0'}}%  <!--TODO In the circle-->
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="matches">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Matches</mat-header-cell>
-      <mat-cell *matCellDef="let statistic">{{statistic.wins+statistic.losses}}</mat-cell>
+      <mat-cell *matCellDef="let statistic">{{statistic.matches}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

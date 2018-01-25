@@ -7,5 +7,4 @@ export class Statistic {
   player: Player;
   wins: number;
   losses: number;
-
 }
