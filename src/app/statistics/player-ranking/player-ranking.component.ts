@@ -5,7 +5,8 @@ import {MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-player-ranking',
-  templateUrl: 'player-ranking.component.html'
+  templateUrl: 'player-ranking.component.html',
+  styleUrls: ['player-ranking.component.scss']
 })
 
 export class PlayerRankingComponent implements OnInit {

@@ -18,11 +18,14 @@
     </ng-container>
 
     <ng-container matColumnDef="winrate">
-      <mat-header-cell *matHeaderCellDef mat-sort-header="winrate">Winrate</mat-header-cell>
+      <mat-header-cell class="winrate-cell" *matHeaderCellDef mat-sort-header="winrate">Winrate</mat-header-cell>
       <mat-cell *matCellDef="let statistic">
-        <round-progress [max]="statistic.matches" [current]="statistic.wins" [color]="'#43a047'" [background]="'#f44336'" [stroke]="25" [responsive]="true">
-        </round-progress>
-        {{statistic.winrate | number: '1.0-0'}}%  <!--TODO In the circle-->
+        <div class="progress-wrapper">
+          <div class="progress-text">{{statistic.winrate | number: '1.0-0'}}%</div>
+          <round-progress [max]="statistic.matches" [current]="statistic.wins" [color]="'#43a047'"
+                          [background]="'#f44336'" [stroke]="25" [responsive]="true">
+          </round-progress>
+        </div>
       </mat-cell>
     </ng-container>
 
