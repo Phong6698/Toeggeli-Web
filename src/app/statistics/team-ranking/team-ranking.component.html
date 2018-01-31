@@ -23,7 +23,7 @@
         <div class="progress-wrapper">
           <div class="progress-text">{{statistic.winrate | number: '1.0-0'}}%</div>
           <round-progress [max]="statistic.matches" [current]="statistic.wins" [color]="'#43a047'"
-                          [background]="'#f44336'" [stroke]="25" [responsive]="true">
+                          [background]="'#f44336'" [stroke]="25" [responsive]="true" [duration]="900" [animationDelay]="400">
           </round-progress>
         </div>
       </mat-cell>

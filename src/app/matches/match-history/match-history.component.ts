@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatchService} from '../shared/match.service';
 import {Match} from '../shared/match.model';
 
@@ -9,6 +9,7 @@ import {Match} from '../shared/match.model';
 })
 export class MatchHistoryComponent implements OnInit {
 
+  @Input() amount: number;
   matches: Match[] = [];
 
   constructor(private matchService: MatchService) {
@@ -21,7 +22,9 @@ export class MatchHistoryComponent implements OnInit {
   getMatches() {
     this.matchService.getMatches().subscribe(matches => {
       this.matches = matches.reverse();
-      this.matches.splice(5); // The Last 5 Matches
+      if (this.amount > 0) {
+        this.matches.splice(this.amount);
+      }
     });
 
     // TODO Sortiering -> Datum fehlt noch

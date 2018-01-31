@@ -37,6 +37,7 @@ ngh
 - App doesn't works on IE
   - BrowserAnimation is not supported by IE at all [link](https://caniuse.com/#feat=web-animation)
 - Chat mit Invitation for game
+- Make player-ranking & team-ranking in one component
 
 
 
