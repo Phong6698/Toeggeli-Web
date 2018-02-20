@@ -71,8 +71,9 @@ export class PlayerRankingComponent implements OnInit {
       }
       this.title = `Top ${this.top} players by ${this.sortBy}`;
 
-      statisticList.splice(this.top);
-      this.dataSource = new MatTableDataSource(statisticList);
+      const statisticFilteredList = statisticList.filter(stat => stat.matches > 4);
+      statisticFilteredList.splice(this.top);
+      this.dataSource = new MatTableDataSource(statisticFilteredList);
       this.dataSource.sort = this.sort;
       this.dataSource.sort.disabled = true;
     } else {
