@@ -6,10 +6,10 @@
   </div>
   <div class="row" style="margin-top: 1rem">
     <div class="col">
-      <app-player-ranking [top]="5" [sortBy]="'winrate'"></app-player-ranking>
+      <app-player-ranking [top]="5" [minMatch]="10" [sortBy]="'winrate'"></app-player-ranking>
     </div>
     <div class="col">
-      <app-team-ranking [top]="5" [sortBy]="'winrate'"></app-team-ranking>
+      <app-team-ranking [top]="5" [minMatch]="5" [sortBy]="'winrate'"></app-team-ranking>
     </div>
     <div class="col-5">
       <app-match-history [amount]="5"></app-match-history>

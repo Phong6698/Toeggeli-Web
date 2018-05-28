@@ -13,6 +13,7 @@ export class PlayerRankingComponent implements OnInit {
 
   @Input() top: number;
   @Input() sortBy: string;
+  @Input() minMatch: number;
 
   title = 'Player Ranking';
 
@@ -71,7 +72,7 @@ export class PlayerRankingComponent implements OnInit {
       }
       this.title = `Top ${this.top} players by ${this.sortBy}`;
 
-      const statisticFilteredList = statisticList.filter(stat => stat.matches > 4);
+      const statisticFilteredList = statisticList.filter(stat => stat.matches >= this.minMatch);
       statisticFilteredList.splice(this.top);
       this.dataSource = new MatTableDataSource(statisticFilteredList);
       this.dataSource.sort = this.sort;
