@@ -28,7 +28,7 @@ String serviceName = "frontend" // Service Name
 /*    TfsClient tfsClient = new TfsClient(username, password)
     ChangeManagementClient managementClient = new ChangeManagementClient(tfsClient, this)*/
 
-    BuildEnvironment buildEnvironment = new BuildEnvironment(projectNameDev, dc, imgStream, imageTag, replicaCountDev, environmentNameDev, serviceName, bc, tfsClient, this)
+    BuildEnvironment buildEnvironment = new BuildEnvironment(projectNameDev, dc, imgStream, imageTag, replicaCountDev, environmentNameDev, serviceName, bc, null, this)
     buildEnvironment.build()
     buildEnvironment.verifyBuild()
     buildEnvironment.deploy()
