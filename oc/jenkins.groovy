@@ -18,11 +18,11 @@ int replicaCountDev = 1 // Gewünschte Anzahl Pods auf DEV
 int replicaCountSyt = 1 // Gewünschte Anzahl Pods auf SYT
 int replicaCountAbt = 1 // Gewünschte Anzahl Pods auf ABT
 int replicaCountPrd = 1 // Gewünschte Anzahl Pods auf PRD
-String bc = "pipeline-test" // Build Config Name
-String imgStream = "pipeline-test" // Image Stream Name
+String bc = "frontend" // Build Config Name
+String imgStream = "frontend" // Image Stream Name
 String imageTag = "latest" // Image Tag Name
-String dc = "pipeline-test" // Deployment Config Name
-String serviceName = "pipeline-test" // Service Name
+String dc = "frontend" // Deployment Config Name
+String serviceName = "frontend" // Service Name
 
 /*withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'my-jenkins-credentials-ID', usernameVariable: 'username', passwordVariable: 'password']]) {*/
 /*    TfsClient tfsClient = new TfsClient(username, password)
