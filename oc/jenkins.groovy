@@ -24,20 +24,20 @@ String imageTag = "latest" // Image Tag Name
 String dc = "frontend" // Deployment Config Name
 String serviceName = "frontend" // Service Name
 
-/*withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'my-jenkins-credentials-ID', usernameVariable: 'username', passwordVariable: 'password']]) {*/
-/*    TfsClient tfsClient = new TfsClient(username, password)
-    ChangeManagementClient managementClient = new ChangeManagementClient(tfsClient, this)*/
+withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'adm-ic-rc019', usernameVariable: 'username', passwordVariable: 'password']]) {
+    TfsClient tfsClient = new TfsClient(username, password)
+   /* ChangeManagementClient managementClient = new ChangeManagementClient(tfsClient, this)*/
 
-    BuildEnvironment buildEnvironment = new BuildEnvironment(projectNameDev, dc, imgStream, imageTag, replicaCountDev, environmentNameDev, serviceName, bc, null, this)
+    BuildEnvironment buildEnvironment = new BuildEnvironment(projectNameDev, dc, imgStream, imageTag, replicaCountDev, environmentNameDev, serviceName, bc, tfsClient, this)
     buildEnvironment.build()
     buildEnvironment.verifyBuild()
     buildEnvironment.deploy()
     buildEnvironment.verifyDeployment()
-/*    TestEnvironment sytEnvironment = new TestEnvironment(buildEnvironment, projectNameSyt, dc, imgStream, imageTag, replicaCountSyt, environmentNameSyt, serviceName, this)
+/*   TestEnvironment sytEnvironment = new TestEnvironment(buildEnvironment, projectNameSyt, dc, imgStream, imageTag, replicaCountSyt, environmentNameSyt, serviceName, this)
     sytEnvironment.allEnvironmentSteps()
     TestEnvironment abtEnvironment = new TestEnvironment(sytEnvironment, projectNameAbt, dc, imgStream, imageTag, replicaCountAbt, environmentNameAbt, serviceName, this)
     abtEnvironment.allEnvironmentSteps()
     ProdEnvironment prdEnvironment = new ProdEnvironment(abtEnvironment, projectNamePrd, dc, imgStream, imageTag, replicaCountPrd, environmentNamePrd, serviceName, managementClient, this)
     prdEnvironment.allEnvironmentSteps(commitUrl)*/
-/*
-}*/
+
+}
