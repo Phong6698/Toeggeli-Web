@@ -18,11 +18,11 @@ int replicaCountDev = 1 // Gewünschte Anzahl Pods auf DEV
 int replicaCountSyt = 1 // Gewünschte Anzahl Pods auf SYT
 int replicaCountAbt = 1 // Gewünschte Anzahl Pods auf ABT
 int replicaCountPrd = 1 // Gewünschte Anzahl Pods auf PRD
-String bc = "frontend" // Build Config Name
-String imgStream = "frontend" // Image Stream Name
+String bc = "toeggeli-web" // Build Config Name
+String imgStream = "toeggeli-web" // Image Stream Name
 String imageTag = "latest" // Image Tag Name
-String dc = "frontend" // Deployment Config Name
-String serviceName = "frontend" // Service Name
+String dc = "toeggeli-web" // Deployment Config Name
+String serviceName = "toeggeli-web" // Service Name
 
 /*withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'adm-ic-rc019', usernameVariable: 'username', passwordVariable: 'password']]) {
     TfsClient tfsClient = new TfsClient(username, password)*/
