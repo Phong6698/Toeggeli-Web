@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row align-self-center" style="margin-top: 1rem">
     <mat-expansion-panel style="margin: auto">
       <mat-expansion-panel-header>
@@ -9,8 +9,8 @@
           Die Berechnung für das ELO-System
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div>Die Berechnung ist vom Stackexchange. Wenn einer mit hohen ELO gegen einen der tiefen ELO hat gewinnt, vierliert
-        der Gewinner ELO und der Verlierer bekommt ELO. Um das zu verhindern gibt es diese Einschränkungen:
+      <div>Die Berechnung ist vom Stackexchange. Ein Problem ist, wenn einer mit hohen ELO gegen einer mit tiefen ELO gewinnt,
+        vierliert der Gewinner ELO und der Verlierer bekommt ELO. Um das zu verhindern gibt es diese Einschränkungen:
         <ul>
           <li>minEloWin = 2.631578947368418</li>
           <li>maxEloWin = 50.0</li>
@@ -26,25 +26,43 @@
 
   </div>
   <div class="row" style="margin-top: 1rem">
-    <div class="col">
-      <ol>
-        <li *ngFor="let player of simulation?.playersSimRanking">{{player.name}} {{player.elo | number : '1.2-2'}}
-        </li>
-      </ol>
+    <div class="col-4">
+      <mat-card class="align-self-center" style="margin: 1em">
+        <ol>
+          <li *ngFor="let player of simulation?.playersSimRanking">{{player.name}} {{player.elo | number : '1.2-2'}}
+          </li>
+        </ol>
+      </mat-card>
     </div>
     <div class="col">
       <mat-card class="text-center" style="margin: 1em" *ngFor="let historyGame of simulation?.historyGames">
         <div class="row">
           <div class="col">
-            <p *ngFor="let player of historyGame.teamBlue.players">{{player.name}} ({{player.elo | number :
-              '1.2-2'}})</p>
+            <div class="row">
+              <div class="col">
+                <p *ngFor="let player of historyGame.teamBlue.players">{{player.name}} <br/> ({{player.elo | number :
+                  '1.2-2'}})</p>
+              </div>
+              <div class="col align-self-center text-center">
+                <p>[{{((historyGame.teamBlue.players[0].elo + historyGame.teamBlue.players[1].elo) / 2) | number :
+                  '1.2-2'}}]</p>
+              </div>
+            </div>
           </div>
           <div class="col align-self-center text-center font-weight-bold">
             {{historyGame.teamBlue.score}} : {{historyGame.teamRed.score}}
           </div>
           <div class="col">
-            <p *ngFor="let player of historyGame.teamRed.players">{{player.name}} ({{player.elo | number :
-              '1.2-2'}})</p>
+            <div class="row">
+              <div class="col align-self-center text-center">
+                <p>[{{((historyGame.teamRed.players[0].elo + historyGame.teamRed.players[1].elo) / 2) | number :
+                  '1.2-2'}}]</p>
+              </div>
+              <div class="col">
+                <p *ngFor="let player of historyGame.teamRed.players">{{player.name}} <br/> ({{player.elo | number :
+                  '1.2-2'}})</p>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">
