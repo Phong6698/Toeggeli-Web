@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="row align-self-center" style="margin-top: 1rem">
+    <mat-expansion-panel style="margin: auto">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          ELO Calculation
+        </mat-panel-title>
+        <mat-panel-description>
+          Die Berechnung für das ELO-System
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div>Die Berechnung ist vom Stackexchange. Wenn einer mit hohen ELO gegen einen der tiefen ELO hat gewinnt, vierliert
+        der Gewinner ELO und der Verlierer bekommt ELO. Um das zu verhindern gibt es diese Einschränkungen:
+        <ul>
+          <li>minEloWin = 2.631578947368418</li>
+          <li>maxEloWin = 50.0</li>
+          <li>minEloLose = -2.631578947368418</li>
+          <li>maxEloLose = -50.0</li>
+        </ul>
+
+        <a href="https://math.stackexchange.com/a/838951/591837">Stackexchange Antwort</a></div>
+
+      <img src="assets/ELO_Calculation.PNG">
+
+    </mat-expansion-panel>
+
+  </div>
+  <div class="row" style="margin-top: 1rem">
+    <div class="col">
+      <ol>
+        <li *ngFor="let player of simulation?.playersSimRanking">{{player.name}} {{player.elo | number : '1.2-2'}}
+        </li>
+      </ol>
+    </div>
+    <div class="col">
+      <mat-card class="text-center" style="margin: 1em" *ngFor="let historyGame of simulation?.historyGames">
+        <div class="row">
+          <div class="col">
+            <p *ngFor="let player of historyGame.teamBlue.players">{{player.name}} ({{player.elo | number :
+              '1.2-2'}})</p>
+          </div>
+          <div class="col align-self-center text-center font-weight-bold">
+            {{historyGame.teamBlue.score}} : {{historyGame.teamRed.score}}
+          </div>
+          <div class="col">
+            <p *ngFor="let player of historyGame.teamRed.players">{{player.name}} ({{player.elo | number :
+              '1.2-2'}})</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            {{historyGame.eloGainBlue | number : '1.2-2'}}
+          </div>
+          <div class="col">
+            {{historyGame.eloGainRed | number : '1.2-2'}}
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

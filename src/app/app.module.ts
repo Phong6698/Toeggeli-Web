@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -10,7 +10,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule, MatSelectModule, MatSlideToggleModule, MatSortModule, MatTableModule, MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule, MatExpansionModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {DashboardComponent} from './dashboard/dashboard.component';
@@ -35,6 +35,15 @@ import {RoundProgressModule} from 'angular-svg-round-progressbar';
 import {CdkTableModule} from '@angular/cdk/table';
 import {QuickMatchComponent} from './matches/quick-match/quick-match.component';
 import {StatisticComponent} from './statistics/statistic/statistic.component';
+import {AdminComponent} from './admin/admin.component';
+import { PlayerComponent } from './players/player/player.component';
+import { TopPlayersComponent } from './statistics/top-players/top-players.component';
+import { EloSimulationComponent } from './elo/elo-simulation/elo-simulation.component';
+import {EloService} from './elo/shared/elo.service';
+import {registerLocaleData} from '@angular/common';
+import localeDECH from '@angular/common/locales/de-CH';
+
+registerLocaleData(localeDECH);
 
 export function socketProvider() {
 /*  return new SockJS('http://localhost:8088/socket');*/
@@ -78,6 +87,10 @@ const stompConfig: StompConfig = {
     PlayerRankingComponent,
     QuickMatchComponent,
     StatisticComponent,
+    /*AdminComponent,
+    PlayerComponent,
+    TopPlayersComponent,*/
+    EloSimulationComponent
   ],
   imports: [
     BrowserModule,
@@ -100,17 +113,20 @@ const stompConfig: StompConfig = {
     MatSlideToggleModule,
     MatTableModule,
     MatSortModule,
+    MatExpansionModule,
     CdkTableModule,
     RoundProgressModule,
     FormsModule,
     HttpClientModule,
     NgbModule.forRoot()
   ],
-  providers: [MatchService, PlayerService, ChatService, StatisticService, StompService,
+  providers: [MatchService, PlayerService, ChatService, StatisticService, StompService, EloService,
     {
       provide: StompConfig,
       useValue: stompConfig
-    }],
+    },
+    {provide: LOCALE_ID, useValue: 'de-CH'}
+    ],
   bootstrap: [AppComponent],
   entryComponents: [RandomPlayerSelectorDialogComponent]
 })

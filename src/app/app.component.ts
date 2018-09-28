@@ -11,7 +11,8 @@ export class AppComponent implements OnInit {
   navLinks = [
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/new-match', label: 'Neues Spiel' },
-    { path: '/statistic', label: 'Statistiken' }
+    { path: '/statistic', label: 'Statistiken' },
+    { path: '/elo-simulation', label: 'ELO Simulation' }
   ];
 
   ngOnInit(): void {

@@ -24,6 +24,14 @@ export class MatchService {
     return this.http.get<Match[]>(this.matchUrl).pipe(catchError(this.handleError));
   }
 
+  getMatchById(id: number): Observable<Match> {
+    return this.http.get<Match>(`${this.matchUrl}/${id}`).pipe(catchError(this.handleError));
+  }
+
+  deleteMatchById(id: number): Observable<any> {
+    return this.http.delete(`${this.matchUrl}/${id}`, httpOptions).pipe(catchError(this.handleError));
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
