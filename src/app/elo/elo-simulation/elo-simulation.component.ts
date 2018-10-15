@@ -19,6 +19,7 @@ export class EloSimulationComponent implements OnInit {
   getSimulation() {
     this.eloService.getSimulation().subscribe(simulation => {
       this.simulation = simulation;
+      this.simulation.historyGames = this.simulation.historyGames.reverse();
     });
   }
 
